@@ -1,0 +1,182 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+  font-size: 16px;
+}
+
+
+.breakpoint-badge {
+  background: #0f172a;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.85rem;
+}
+
+.bp { display: none; }
+.bp-mobile { display: inline; }   
+
+.container {
+  display: flex;
+  flex-direction: column;   
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  gap: 16px;
+}
+
+
+.sidebar {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.sidebar h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.sidebar ul {
+  list-style: none;
+  display: flex;              
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 8px 16px;
+  background: #f1f5f9;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.sidebar ul li a:hover {
+  background: #e2e8f0;
+}
+
+
+.konten {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.konten h1 {
+  font-size: 1.5rem;           
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+.konten > p {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+
+.kartu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.kartu {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 18px;
+  transition: box-shadow 0.2s;
+}
+
+.kartu:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.kartu-ikon {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.kartu h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #0f172a;
+}
+
+.kartu p {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+@media (min-width: 600px) {
+  .bp-mobile { display: none; }
+  .bp-tablet { display: inline; }
+
+  .kartu-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  .konten h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bp-tablet { display: none; }
+  .bp-desktop { display: inline; }
+
+  .container {
+    flex-direction: row;       
+    align-items: flex-start;
+    padding: 24px;
+  }
+
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+  }
+
+  .sidebar ul {
+    flex-direction: column;  
+  }
+
+  .sidebar ul li a {
+    width: 100%;
+  }
+
+  .konten {
+    flex: 1;                  
+    padding: 32px;
+  }
+
+  .konten h1 {
+    font-size: 2.2rem;
+  }
+
+  .kartu-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}

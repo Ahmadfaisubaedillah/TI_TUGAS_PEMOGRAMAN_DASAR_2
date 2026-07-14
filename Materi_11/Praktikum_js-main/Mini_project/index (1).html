@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini Project – Biodata Mahasiswa</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .profile-card {
+      display: none; flex-direction: column; align-items: center;
+      gap: 16px; text-align: center; padding: 32px;
+      background: linear-gradient(135deg, var(--blue-900), var(--blue-700));
+      border-radius: var(--radius-lg); margin-top: 28px; color: white;
+    }
+    .profile-card.show { display: flex; }
+    .profile-avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: rgba(255,255,255,.15); border: 3px solid rgba(255,255,255,.4);
+      font-family: var(--font-display); font-size: 2.5rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .profile-name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; }
+    .profile-nim  { font-size: .85rem; color: var(--blue-200, #bfdbfe); opacity: .8; }
+    .profile-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px 24px; text-align: left; width: 100%;
+      margin-top: 8px;
+    }
+    .profile-item label { font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; opacity: .6; }
+    .profile-item p { font-size: .92rem; font-weight: 600; }
+    .divider { width: 100%; height: 1px; background: rgba(255,255,255,.15); margin: 4px 0; }
+  </style>
+</head>
+<body class="page-wrap">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="brand-icon">🎓</span>
+        <div>
+          <p class="brand-label">Mini Project</p>
+          <h1 class="brand-name">Biodata Mahasiswa</h1>
+        </div>
+      </div>
+      <div class="header-meta">
+        <p class="meta-name">Ahmad Faiz Ubaedillah</p>
+        <p class="meta-nim">NIM: 2024001001</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <a class="back-link" href="../index.html">← Kembali ke Beranda</a>
+    <div class="card">
+      <p class="card-title">🎓 Aplikasi Biodata Mahasiswa</p>
+      <p class="card-desc">Isi semua data di bawah ini, lalu klik Tampilkan untuk melihat kartu biodata Anda.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 16px;">
+        <div class="form-group">
+          <label class="form-label">Nama Lengkap *</label>
+          <input class="form-input" id="mpNama" type="text" placeholder="Ahmad Faiz Ubaedillah" value="Ahmad Faiz Ubaedillah"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">NIM *</label>
+          <input class="form-input" id="mpNim" type="text" placeholder="2024001001" value="2024001001"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Jurusan</label>
+          <input class="form-input" id="mpJurusan" type="text" placeholder="Teknik Informatika" value="Teknik Informatika"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fakultas</label>
+          <input class="form-input" id="mpFakultas" type="text" placeholder="Fakultas Teknologi" value="Fakultas Teknologi"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Semester</label>
+          <input class="form-input" id="mpSemester" type="text" placeholder="3" value="3"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Angkatan</label>
+          <input class="form-input" id="mpAngkatan" type="text" placeholder="2024" value="2024"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tempat Lahir</label>
+          <input class="form-input" id="mpTtl" type="text" placeholder="Jakarta"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">No. Telepon</label>
+          <input class="form-input" id="mpTelp" type="text" placeholder="08xxxxxxxxxx"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Alamat</label>
+        <input class="form-input" id="mpAlamat" type="text" placeholder="Jl. Contoh No. 1, Kota"/>
+      </div>
+
+      <p class="error-msg show" id="mpErr" style="display:none"></p>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="tampilkanProfil()">🪪 Tampilkan Biodata</button>
+        <button class="btn btn-secondary" onclick="resetProfil()">🔄 Reset</button>
+      </div>
+
+      <!-- Kartu Biodata -->
+      <div class="profile-card" id="profileCard">
+        <div class="profile-avatar" id="ppAvatar">AF</div>
+        <p class="profile-name" id="ppNama">Ahmad Faiz Ubaedillah</p>
+        <p class="profile-nim" id="ppNim">NIM: 2024001001</p>
+        <div class="divider"></div>
+        <div class="profile-grid">
+          <div class="profile-item"><label>Jurusan</label><p id="ppJurusan">–</p></div>
+          <div class="profile-item"><label>Fakultas</label><p id="ppFakultas">–</p></div>
+          <div class="profile-item"><label>Semester</label><p id="ppSemester">–</p></div>
+          <div class="profile-item"><label>Angkatan</label><p id="ppAngkatan">–</p></div>
+          <div class="profile-item"><label>Tempat Lahir</label><p id="ppTtl">–</p></div>
+          <div class="profile-item"><label>Telepon</label><p id="ppTelp">–</p></div>
+        </div>
+        <div class="divider"></div>
+        <div class="profile-item" style="width:100%;text-align:left">
+          <label>Alamat</label><p id="ppAlamat">–</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Ahmad Faiz Ubaedillah</p>
+    <p>NIM: 2024001001 &nbsp;|&nbsp; Mini Project – Praktikum JavaScript</p>
+  </footer>
+
+  <script>
+    function tampilkanProfil() {
+      const nama = document.getElementById('mpNama').value.trim();
+      const nim  = document.getElementById('mpNim').value.trim();
+      const err  = document.getElementById('mpErr');
+
+      if (!nama || !nim) {
+        err.textContent = '⚠️ Nama dan NIM wajib diisi!';
+        err.style.display = 'block';
+        return;
+      }
+      err.style.display = 'none';
+
+      const get = id => document.getElementById(id).value.trim() || '–';
+      const inisial = nama.split(' ').slice(0,2).map(w=>w[0].toUpperCase()).join('');
+
+      document.getElementById('ppAvatar').textContent   = inisial;
+      document.getElementById('ppNama').textContent     = nama;
+      document.getElementById('ppNim').textContent      = 'NIM: ' + nim;
+      document.getElementById('ppJurusan').textContent  = get('mpJurusan');
+      document.getElementById('ppFakultas').textContent = get('mpFakultas');
+      document.getElementById('ppSemester').textContent = 'Semester ' + get('mpSemester');
+      document.getElementById('ppAngkatan').textContent = get('mpAngkatan');
+      document.getElementById('ppTtl').textContent      = get('mpTtl');
+      document.getElementById('ppTelp').textContent     = get('mpTelp');
+      document.getElementById('ppAlamat').textContent   = get('mpAlamat');
+
+      document.getElementById('profileCard').classList.add('show');
+      document.getElementById('profileCard').scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+
+    function resetProfil() {
+      ['mpNama','mpNim','mpJurusan','mpFakultas','mpSemester','mpAngkatan','mpTtl','mpTelp','mpAlamat']
+        .forEach(id => document.getElementById(id).value = '');
+      document.getElementById('profileCard').classList.remove('show');
+      document.getElementById('mpErr').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

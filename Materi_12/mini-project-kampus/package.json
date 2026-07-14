@@ -1,0 +1,11 @@
+{
+  "name": "server-informasi-kampus",
+  "version": "1.0.0",
+  "description": "Mini project Node.js - Server Informasi Kampus (Pertemuan 12)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Ahmad Fais",
+  "license": "ISC"
+}

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Biodata – Ahmad Faiz Uabedillah</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f2d5e;
+  --blue:#1e4fac;
+  --sky:#3b82f6;
+  --accent:#f59e0b;
+  --bg:#f1f5f9;
+  --white:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --border:#e2e8f0;
+  --radius:12px;
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+
+.avatar-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+}
+
+nav{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 1.5rem;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:.6rem;color:#fff;font-weight:700;font-size:1rem;text-decoration:none}
+.nav-brand-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-badge{background:var(--accent);color:#000;font-size:.7rem;font-weight:700;padding:.15rem .5rem;border-radius:999px;margin-left:.3rem}
+
+
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);padding:4rem 1.5rem 6rem;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:60px;background:var(--bg);clip-path:ellipse(55% 100% at 50% 100%)}
+.hero-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap}
+.hero-avatar{width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.12);border:4px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:4rem;flex-shrink:0;box-shadow:0 8px 32px rgba(0,0,0,.3);animation:avatarPop .6s ease both}
+@keyframes avatarPop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.hero-text{animation:heroSlide .5s ease .1s both}
+@keyframes heroSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.4rem}
+.hero-name{font-size:2.6rem;font-weight:800;color:#fff;line-height:1.1}
+.hero-role{font-size:1rem;color:rgba(255,255,255,.7);margin-top:.4rem}
+.hero-badges{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+.hero-tag{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.78rem;padding:.3rem .8rem;border-radius:999px}
+.hero-tag.gold{background:var(--accent);border-color:var(--accent);color:#000;font-weight:700}
+
+
+main{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:2.5rem 1.5rem}
+.grid-3{display:grid;grid-template-columns:340px 1fr;gap:1.5rem}
+@media(max-width:768px){.grid-3{grid-template-columns:1fr}}
+
+
+.card{background:var(--white);border-radius:var(--radius);box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06);overflow:hidden;animation:cardIn .5s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card-head{padding:.9rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem}
+.card-head-icon{width:28px;height:28px;border-radius:6px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.card-head-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.card-body{padding:1.2rem}
+
+.info-list{display:flex;flex-direction:column;gap:.8rem}
+.info-row{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)}
+.info-row:last-child{border-bottom:none;padding-bottom:0}
+.info-key{font-size:.78rem;color:var(--muted);font-weight:500;flex-shrink:0;padding-top:.05rem}
+.info-val{font-size:.88rem;font-weight:600;text-align:right}
+
+
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{background:var(--bg);border:1px solid var(--border);font-size:.78rem;padding:.25rem .65rem;border-radius:6px;font-weight:500}
+
+
+.skill-item{margin-bottom:.9rem}
+.skill-top{display:flex;justify-content:space-between;margin-bottom:.3rem;font-size:.82rem}
+.skill-name{font-weight:600}
+.skill-pct{color:var(--muted)}
+.bar-bg{height:6px;background:var(--bg);border-radius:999px;overflow:hidden}
+.bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--sky),var(--blue));transition:width 1s ease}
+
+
+.timeline{position:relative;padding-left:1.5rem}
+.timeline::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--border)}
+.tl-item{position:relative;padding-bottom:1.4rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-1.5rem;top:4px;width:14px;height:14px;border-radius:50%;background:var(--blue);border:3px solid var(--white);box-shadow:0 0 0 2px var(--sky)}
+.tl-year{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--sky);font-weight:700;margin-bottom:.2rem}
+.tl-name{font-size:.92rem;font-weight:700}
+.tl-desc{font-size:.8rem;color:var(--muted);margin-top:.15rem}
+
+.contact-item{display:flex;align-items:center;gap:.8rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.contact-item:last-child{border-bottom:none}
+.contact-icon{width:34px;height:34px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.contact-label{font-size:.72rem;color:var(--muted)}
+.contact-val{font-size:.88rem;font-weight:600}
+
+
+.quote-box{background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:var(--radius);padding:1.5rem;color:#fff;position:relative;overflow:hidden}
+.quote-box::before{content:'"';position:absolute;right:1rem;top:-.5rem;font-size:6rem;opacity:.1;font-family:Georgia,serif;line-height:1}
+.quote-text{font-size:1rem;line-height:1.7;font-style:italic}
+.quote-author{font-size:.78rem;color:rgba(255,255,255,.6);margin-top:.7rem}
+
+
+footer{background:var(--navy);color:rgba(255,255,255,.5);text-align:center;padding:1.2rem;font-size:.78rem;margin-top:auto}
+footer span{color:var(--accent)}
+</style>
+</head>
+<body>
+
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#"><div class="nav-brand-dot"></div><span id="nav-nama">—</span></a>
+    <div class="nav-links">
+      <a href="#" class="active">Beranda</a>
+      <a href="#">Portofolio</a>
+      <a href="#">Blog</a>
+      <a href="#">Kontak</a>
+    </div>
+  </div>
+</nav>
+ 
+
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-avatar" id="h-avatar">👤</div>
+    <div class="hero-text">
+      <div class="hero-label">Halaman Biodata</div>
+      <div class="hero-name" id="h-nama">—</div>
+      <div class="hero-role" id="h-role">—</div>
+      <div class="hero-badges">
+        <span class="hero-tag gold" id="h-nim">—</span>
+        <span class="hero-tag" id="h-prodi">—</span>
+        <span class="hero-tag" id="h-univ">—</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<main>
+  <div class="grid-3">
+
+ 
+    <div style="display:flex;flex-direction:column;gap:1.5rem">
+
+      <div class="card" style="animation-delay:.05s">
+        <div class="card-head"><div class="card-head-icon">👤</div><div class="card-head-title">Data Pribadi</div></div>
+        <div class="card-body"><div class="info-list" id="pribadi-list"></div></div>
+      </div>
+
+      <div class="card" style="animation-delay:.1s">
+        <div class="card-head"><div class="card-head-icon">📞</div><div class="card-head-title">Kontak</div></div>
+        <div class="card-body" id="kontak-list"></div>
+      </div>
+
+      <div class="card" style="animation-delay:.15s">
+        <div class="card-head"><div class="card-head-icon">🎯</div><div class="card-head-title">Hobi & Minat</div></div>
+        <div class="card-body"><div class="tags" id="hobi-tags"></div></div>
+      </div>
+
+    </div>
+
+    
+    <div style="display:flex;flex-direction:column;gap:1.5rem">
+
+      <div class="card" style="animation-delay:.1s">
+        <div class="card-head"><div class="card-head-icon">📖</div><div class="card-head-title">Tentang Saya</div></div>
+        <div class="card-body"><p style="font-size:.9rem;line-height:1.75;color:#334155" id="tentang-text">—</p></div>
+      </div>
+
+      <div class="card" style="animation-delay:.15s">
+        <div class="card-head"><div class="card-head-icon">🎓</div><div class="card-head-title">Riwayat Pendidikan</div></div>
+        <div class="card-body"><div class="timeline" id="pendidikan-list"></div></div>
+      </div>
+
+      <div class="card" style="animation-delay:.2s">
+        <div class="card-head"><div class="card-head-icon">💡</div><div class="card-head-title">Kemampuan / Skill</div></div>
+        <div class="card-body" id="skill-list"></div>
+      </div>
+
+      <div class="quote-box" id="quote-box" style="animation-delay:.25s"></div>
+
+
+    </div>
+  </div>
+</main>
+
+<footer>© 2025 <span id="footer-nama">—</span> · Latihan 9 – Halaman Biodata</footer>
+
+<script>
+
+const data = {
+  nama:       "Ahmad Faiz Ubaedillah",
+  avatar:     "foto.jpeg",
+  role:       "Mahasiswa Ilmu Komputer · Semester 2",
+  nim:        "NIM: 2025806049",
+  prodi:      "Teknologi informasi",
+  universitas:"Universitas Insan Pembangunan",
+
+  pribadi: [
+    { key:"Tempat Lahir",     val:"Tangerang" },
+    { key:"Tanggal Lahir",    val:"14 November 2006" },
+    { key:"Jenis Kelamin",    val:"Laki-laki" },
+    { key:"Agama",            val:"Islam" },
+    { key:"Kewarganegaraan",  val:"Indonesia" },
+    { key:"Golongan Darah",   val:"O" },
+    { key:"Alamat",           val:"Jl. Poros Tengah.Sempur .Tangerang" },
+  ],
+
+  kontak: [
+    { icon:"📱", label:"Telepon",    val:"+62 857 1663 1157" },
+    { icon:"✉️",  label:"Email",     val:"aubaedillah109@gamil.com" },
+    { icon:"📸", label:"Instagram",   val:"a.fais36" },
+    { icon:"💻", label:"GitHub",     val:"github.com/ahmadfaisubaedillah" },
+  ],
+
+  hobi: ["Coding","Membaca","Futsal","Fishing","Traveling","Musik"],
+
+  tentang: "Halo! Saya Budi Santoso, mahasiswa Teknik Informatika semester 4 di Universitas Indonesia. Saya memiliki minat besar di bidang pengembangan web dan kecerdasan buatan. Saya aktif dalam berbagai proyek open source dan organisasi kemahasiswaan, serta selalu berusaha mengembangkan diri baik secara akademis maupun non-akademis.",
+
+  pendidikan: [
+    { tahun:"2025 – Sekarang", nama:"Universitas Insan Pembangunan",      desc:"S1 Ilmu Komputer" },
+    { tahun:"2022 – 2025",     nama:"SMA Citra Nusantara",         desc:"Teknik Komputer Jaringan" },
+    { tahun:"2019 – 2022",     nama:"MTS Miftahul Khaer",         desc:"Lulus dengan baik" },
+  ],
+
+  skills: [
+    { nama:"HTML & CSS",     pct:90 },
+    { nama:"JavaScript",     pct:78 },
+    { nama:"Python",         pct:72 },
+  ],
+
+  quote: {
+    teks:   "Jangan takut berjalan lambat, takutlah jika hanya diam di tempat.",
+    author: "— Motto Hidup Faiz",
+  },
+};
+</script>
+<script>
+
+document.getElementById('nav-nama').textContent  = data.nama;
+document.getElementById('h-avatar').textContent  = data.avatar;
+document.getElementById('h-nama').textContent    = data.nama;
+document.getElementById('h-role').textContent    = data.role;
+document.getElementById('h-nim').textContent     = data.nim;
+document.getElementById('h-prodi').textContent   = data.prodi;
+document.getElementById('h-univ').textContent    = data.universitas;
+document.getElementById('footer-nama').textContent = data.nama;
+
+
+const pribadiList = document.getElementById('pribadi-list');
+data.pribadi.forEach(r => {
+  pribadiList.innerHTML += `<div class="info-row"><span class="info-key">${r.key}</span><span class="info-val">${r.val}</span></div>`;
+});
+
+
+const kontakList = document.getElementById('kontak-list');
+data.kontak.forEach(c => {
+  kontakList.innerHTML += `<div class="contact-item"><div class="contact-icon">${c.icon}</div><div><div class="contact-label">${c.label}</div><div class="contact-val">${c.val}</div></div></div>`;
+});
+
+
+const hobiTags = document.getElementById('hobi-tags');
+data.hobi.forEach(h => { hobiTags.innerHTML += `<span class="tag">${h}</span>`; });
+
+
+document.getElementById('tentang-text').textContent = data.tentang;
+
+
+const pendList = document.getElementById('pendidikan-list');
+data.pendidikan.forEach(p => {
+  pendList.innerHTML += `<div class="tl-item"><div class="tl-dot"></div><div class="tl-year">${p.tahun}</div><div class="tl-name">${p.nama}</div><div class="tl-desc">${p.desc}</div></div>`;
+});
+
+
+const skillList = document.getElementById('skill-list');
+data.skills.forEach(s => {
+  skillList.innerHTML += `<div class="skill-item"><div class="skill-top"><span class="skill-name">${s.nama}</span><span class="skill-pct">${s.pct}%</span></div><div class="bar-bg"><div class="bar-fill" style="width:0%" data-w="${s.pct}%"></div></div></div>`;
+});
+
+document.getElementById('quote-box').innerHTML = `<div class="quote-text">${data.quote.teks}</div><div class="quote-author">${data.quote.author}</div>`;
+
+
+setTimeout(() => {
+  document.querySelectorAll('.bar-fill').forEach(b => b.style.width = b.dataset.w);
+}, 300);
+
+document.getElementById('h-avatar').innerHTML =
+`<img src="${data.avatar}" class="avatar-img">`;
+
+</script>
+</body>
+</html>

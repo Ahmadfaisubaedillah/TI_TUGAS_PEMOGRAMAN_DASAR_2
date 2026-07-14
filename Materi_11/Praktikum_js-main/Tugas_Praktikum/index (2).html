@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tugas – Sistem Data Mahasiswa</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      margin-bottom: 28px;
+    }
+    .stat-box {
+      background: var(--blue-50); border: 1px solid var(--blue-100);
+      border-radius: var(--radius-md); padding: 16px 14px; text-align: center;
+    }
+    .stat-num { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; color: var(--blue-700); }
+    .stat-lbl { font-size: .72rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; }
+    .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .filter-btn {
+      padding: 6px 16px; border-radius: 999px; border: 1.5px solid var(--gray-300);
+      background: white; color: var(--gray-700); font-size: .8rem; font-weight: 600;
+      cursor: pointer; transition: all .15s;
+    }
+    .filter-btn.active, .filter-btn:hover { background: var(--blue-500); color: white; border-color: var(--blue-500); }
+    .action-cell { display: flex; gap: 6px; }
+    .del-btn {
+      background: #fee2e2; color: #b91c1c; border: none;
+      border-radius: 6px; padding: 4px 10px; font-size: .78rem; font-weight: 600; cursor: pointer;
+    }
+    .del-btn:hover { background: #fca5a5; }
+    .toast {
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--blue-900); color: white;
+      padding: 12px 20px; border-radius: 10px;
+      font-size: .88rem; font-weight: 600;
+      box-shadow: var(--shadow-lg); display: none; z-index: 999;
+    }
+    .toast.show { display: block; animation: slideIn .3s ease; }
+    @keyframes slideIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  </style>
+</head>
+<body class="page-wrap">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="brand-icon">📊</span>
+        <div>
+          <p class="brand-label">Tugas Praktikum</p>
+          <h1 class="brand-name">Sistem Data Mahasiswa</h1>
+        </div>
+      </div>
+      <div class="header-meta">
+        <p class="meta-name">Ahmad Faiz Ubaedillah</p>
+        <p class="meta-nim">NIM: 2024001001</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content" style="max-width:960px">
+    <a class="back-link" href="../index.html">← Kembali ke Beranda</a>
+
+    <!-- STATISTIK -->
+    <div class="stats-bar">
+      <div class="stat-box"><div class="stat-num" id="statTotal">0</div><div class="stat-lbl">Total Mahasiswa</div></div>
+      <div class="stat-box"><div class="stat-num" id="statRata">–</div><div class="stat-lbl">Rata-rata Nilai</div></div>
+      <div class="stat-box"><div class="stat-num" id="statTert">–</div><div class="stat-lbl">Nilai Tertinggi</div></div>
+      <div class="stat-box"><div class="stat-num" id="statTerend">–</div><div class="stat-lbl">Nilai Terendah</div></div>
+    </div>
+
+    <!-- FORM INPUT -->
+    <div class="card" style="margin-bottom:24px">
+      <p class="card-title">➕ Input Data Mahasiswa</p>
+      <p class="card-desc">Masukkan nama dan nilai mahasiswa, lalu klik Simpan.</p>
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;align-items:end;">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Nama Mahasiswa</label>
+          <input class="form-input" id="inpNama" type="text" placeholder="Masukkan nama lengkap"/>
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Nilai (0–100)</label>
+          <input class="form-input" id="inpNilai" type="number" placeholder="0–100" min="0" max="100"/>
+        </div>
+      </div>
+      <p class="error-msg" id="formErr" style="margin-top:8px;"></p>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn btn-primary" onclick="simpanData()">💾 Simpan Data</button>
+        <button class="btn btn-secondary" onclick="resetInput()">🔄 Reset Input</button>
+      </div>
+    </div>
+
+    <!-- TABEL DATA -->
+    <div class="card">
+      <div class="section-header">
+        <div>
+          <p class="card-title" style="margin-bottom:0">📋 Data Mahasiswa</p>
+          <p class="card-desc" style="margin-bottom:0">Daftar semua mahasiswa yang telah disimpan.</p>
+        </div>
+        <button class="btn btn-danger" onclick="hapusSemua()" style="font-size:.8rem;padding:8px 14px">🗑️ Hapus Semua</button>
+      </div>
+
+      <!-- Filter -->
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterData('semua', this)">Semua</button>
+        <button class="filter-btn" onclick="filterData('A', this)">Grade A (90–100)</button>
+        <button class="filter-btn" onclick="filterData('B', this)">Grade B (75–89)</button>
+        <button class="filter-btn" onclick="filterData('C', this)">Grade C (60–74)</button>
+        <button class="filter-btn" onclick="filterData('D', this)">Grade D (&lt;60)</button>
+      </div>
+
+      <!-- Search -->
+      <input class="form-input" id="searchInput" type="text"
+             placeholder="🔍 Cari nama mahasiswa…"
+             oninput="renderTabel()"
+             style="margin-bottom:16px;"/>
+
+      <div id="tableContainer">
+        <div class="empty-state"><span>📭</span>Belum ada data. Tambahkan mahasiswa di atas.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Ahmad Faiz Ubaedillah</p>
+    <p>NIM: 2024001001 &nbsp;|&nbsp; Tugas Praktikum – Sistem Data Mahasiswa</p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ========================
+    // DATA & STATE
+    // ========================
+    let dataMahasiswa = JSON.parse(localStorage.getItem('dataMhs') || '[]');
+    let filterAktif = 'semua';
+
+    // ========================
+    // FUNGSI UTAMA
+    // ========================
+    function simpanData() {
+      const nama  = document.getElementById('inpNama').value.trim();
+      const nilai = parseFloat(document.getElementById('inpNilai').value);
+      const err   = document.getElementById('formErr');
+
+      // Validasi
+      if (!nama) { showErr('⚠️ Nama mahasiswa tidak boleh kosong!'); return; }
+      if (isNaN(nilai) || nilai < 0 || nilai > 100) { showErr('⚠️ Nilai harus antara 0–100!'); return; }
+
+      err.style.display = 'none';
+
+      const mahasiswa = {
+        id:    Date.now(),
+        nama:  nama,
+        nilai: nilai,
+        grade: hitungGrade(nilai),
+        waktu: new Date().toLocaleString('id-ID')
+      };
+
+      dataMahasiswa.push(mahasiswa);
+      simpanStorage();
+      renderTabel();
+      updateStatistik();
+      resetInput();
+      showToast(`✅ Data "${nama}" berhasil disimpan!`);
+    }
+
+    function hapusData(id) {
+      const mhs = dataMahasiswa.find(m => m.id === id);
+      dataMahasiswa = dataMahasiswa.filter(m => m.id !== id);
+      simpanStorage();
+      renderTabel();
+      updateStatistik();
+      if (mhs) showToast(`🗑️ Data "${mhs.nama}" dihapus.`);
+    }
+
+    function hapusSemua() {
+      if (dataMahasiswa.length === 0) { showToast('⚠️ Tidak ada data untuk dihapus.'); return; }
+      if (!confirm(`Hapus semua ${dataMahasiswa.length} data mahasiswa?`)) return;
+      dataMahasiswa = [];
+      simpanStorage();
+      renderTabel();
+      updateStatistik();
+      showToast('🗑️ Semua data berhasil dihapus.');
+    }
+
+    function filterData(grade, btn) {
+      filterAktif = grade;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTabel();
+    }
+
+    // ========================
+    // FUNGSI PEMBANTU
+    // ========================
+    function hitungGrade(nilai) {
+      if (nilai >= 90) return 'A';
+      if (nilai >= 75) return 'B';
+      if (nilai >= 60) return 'C';
+      return 'D';
+    }
+
+    function badgeGrade(grade) {
+      const map = { A:'nilai-a', B:'nilai-b', C:'nilai-c', D:'nilai-d' };
+      return `<span class="nilai-badge ${map[grade]}">Grade ${grade}</span>`;
+    }
+
+    function simpanStorage() {
+      localStorage.setItem('dataMhs', JSON.stringify(dataMahasiswa));
+    }
+
+    function resetInput() {
+      document.getElementById('inpNama').value  = '';
+      document.getElementById('inpNilai').value = '';
+      document.getElementById('formErr').style.display = 'none';
+    }
+
+    function showErr(msg) {
+      const el = document.getElementById('formErr');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // ========================
+    // RENDER TABEL
+    // ========================
+    function renderTabel() {
+      const cari = document.getElementById('searchInput').value.toLowerCase();
+      let data = dataMahasiswa.filter(m => {
+        const matchFilter = filterAktif === 'semua' || m.grade === filterAktif;
+        const matchCari   = m.nama.toLowerCase().includes(cari);
+        return matchFilter && matchCari;
+      });
+
+      const container = document.getElementById('tableContainer');
+
+      if (data.length === 0) {
+        container.innerHTML = `<div class="empty-state"><span>🔍</span>${dataMahasiswa.length === 0 ? 'Belum ada data. Tambahkan mahasiswa di atas.' : 'Tidak ada data yang cocok dengan filter.'}</div>`;
+        return;
+      }
+
+      let html = `
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nama Mahasiswa</th>
+              <th>Nilai</th>
+              <th>Grade</th>
+              <th>Waktu Input</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      data.forEach((m, i) => {
+        html += `
+          <tr>
+            <td>${i + 1}</td>
+            <td><strong>${m.nama}</strong></td>
+            <td><strong>${m.nilai}</strong></td>
+            <td>${badgeGrade(m.grade)}</td>
+            <td style="font-size:.78rem;color:var(--gray-500)">${m.waktu}</td>
+            <td><div class="action-cell">
+              <button class="del-btn" onclick="hapusData(${m.id})">🗑️ Hapus</button>
+            </div></td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    // ========================
+    // STATISTIK
+    // ========================
+    function updateStatistik() {
+      const total = dataMahasiswa.length;
+      document.getElementById('statTotal').textContent = total;
+
+      if (total === 0) {
+        ['statRata','statTert','statTerend'].forEach(id => document.getElementById(id).textContent = '–');
+        return;
+      }
+
+      const nilais = dataMahasiswa.map(m => m.nilai);
+      const rata   = nilais.reduce((a,b) => a+b, 0) / total;
+      const maks   = Math.max(...nilais);
+      const min    = Math.min(...nilais);
+
+      document.getElementById('statRata').textContent   = rata.toFixed(1);
+      document.getElementById('statTert').textContent   = maks;
+      document.getElementById('statTerend').textContent = min;
+    }
+
+    // ========================
+    // INIT
+    // ========================
+    renderTabel();
+    updateStatistik();
+  </script>
+</body>
+</html>

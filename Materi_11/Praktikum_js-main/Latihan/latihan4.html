@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Latihan 4 – Validasi Form</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .strength-bar {
+      height: 6px; border-radius: 999px;
+      background: var(--gray-100); margin-top: 8px; overflow: hidden;
+    }
+    .strength-fill {
+      height: 100%; border-radius: 999px;
+      transition: width .3s, background .3s;
+      width: 0%;
+    }
+    .strength-label { font-size: .76rem; margin-top: 4px; font-weight: 600; }
+    .rule { display: flex; align-items: center; gap: 8px; font-size: .83rem; margin: 4px 0; }
+    .rule-icon { font-size: .9rem; }
+    .rule.pass { color: #16a34a; }
+    .rule.fail { color: #dc2626; }
+  </style>
+</head>
+<body class="page-wrap">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="brand-icon">⟨/⟩</span>
+        <div>
+          <p class="brand-label">Latihan 4</p>
+          <h1 class="brand-name">Validasi Form Nama</h1>
+        </div>
+      </div>
+      <div class="header-meta">
+        <p class="meta-name">Ahmad Faiz Ubaedillah</p>
+        <p class="meta-nim">NIM: 2024001001</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <a class="back-link" href="../index.html">← Kembali ke Beranda</a>
+    <div class="card">
+      <p class="card-title">✅ Validasi Form Nama</p>
+      <p class="card-desc">Form ini memvalidasi nama secara real-time sesuai aturan yang ditentukan.</p>
+
+      <div class="form-group">
+        <label class="form-label">Nama Lengkap</label>
+        <input class="form-input" id="inputNama" type="text"
+               placeholder="Contoh: Ahmad Faiz Ubaedillah"
+               oninput="validasiRealtime(this.value)"
+               onblur="validasiFinal()"/>
+        <p class="error-msg" id="errNama"></p>
+        <p class="success-msg" id="okNama"></p>
+      </div>
+
+      <!-- Strength bar -->
+      <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+      <p class="strength-label" id="strengthLabel" style="color:var(--gray-300)">Masukkan nama untuk melihat skor validasi</p>
+
+      <!-- Aturan -->
+      <div style="margin:16px 0 20px;">
+        <p style="font-size:.8rem;font-weight:600;color:var(--gray-500);margin-bottom:8px;">Aturan Validasi</p>
+        <div class="rule fail" id="rule1"><span class="rule-icon">✗</span> Minimal 3 karakter</div>
+        <div class="rule fail" id="rule2"><span class="rule-icon">✗</span> Maksimal 50 karakter</div>
+        <div class="rule fail" id="rule3"><span class="rule-icon">✗</span> Tidak boleh mengandung angka</div>
+        <div class="rule fail" id="rule4"><span class="rule-icon">✗</span> Tidak boleh diawali spasi</div>
+        <div class="rule fail" id="rule5"><span class="rule-icon">✗</span> Minimal 2 kata (nama lengkap)</div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="validasiFinal()">✔ Validasi Sekarang</button>
+        <button class="btn btn-secondary" onclick="resetForm()">🔄 Reset</button>
+      </div>
+
+      <div class="result-box show" style="margin-top:20px">
+        <h4>📝 Konsep yang Digunakan</h4>
+        <p>• <strong>RegExp / .test()</strong> – ekspresi reguler untuk validasi</p>
+        <p>• <strong>Event oninput &amp; onblur</strong> – real-time dan saat klik keluar</p>
+        <p>• <strong>String methods</strong> – .trim(), .length, .split()</p>
+        <p>• <strong>Conditional rendering</strong> – tampilkan pesan sesuai kondisi</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Ahmad Faiz Ubaedillah</p>
+    <p>NIM: 2024001001 &nbsp;|&nbsp; Latihan 4 – Praktikum JavaScript</p>
+  </footer>
+
+  <script>
+    function setRule(id, pass) {
+      const el = document.getElementById(id);
+      el.className = 'rule ' + (pass ? 'pass' : 'fail');
+      el.querySelector('.rule-icon').textContent = pass ? '✓' : '✗';
+    }
+
+    function validasiRealtime(val) {
+      const r1 = val.length >= 3;
+      const r2 = val.length <= 50;
+      const r3 = !/\d/.test(val);
+      const r4 = val === val.trimStart();
+      const r5 = val.trim().split(/\s+/).filter(Boolean).length >= 2;
+
+      setRule('rule1', r1);
+      setRule('rule2', r2);
+      setRule('rule3', r3);
+      setRule('rule4', r4);
+      setRule('rule5', r5);
+
+      const score = [r1, r2, r3, r4, r5].filter(Boolean).length;
+      const pct   = (score / 5) * 100;
+      const fill  = document.getElementById('strengthFill');
+      const label = document.getElementById('strengthLabel');
+      fill.style.width = pct + '%';
+
+      if (score === 0)      { fill.style.background = '#dc2626'; label.textContent = 'Tidak valid'; label.style.color='#dc2626'; }
+      else if (score <= 2)  { fill.style.background = '#f97316'; label.textContent = 'Lemah'; label.style.color='#f97316'; }
+      else if (score <= 4)  { fill.style.background = '#f59e0b'; label.textContent = 'Cukup'; label.style.color='#f59e0b'; }
+      else                  { fill.style.background = '#16a34a'; label.textContent = '✅ Valid sempurna!'; label.style.color='#16a34a'; }
+    }
+
+    function validasiFinal() {
+      const val = document.getElementById('inputNama').value;
+      validasiRealtime(val);
+
+      const errEl = document.getElementById('errNama');
+      const okEl  = document.getElementById('okNama');
+      const score = [
+        val.length >= 3, val.length <= 50,
+        !/\d/.test(val), val === val.trimStart(),
+        val.trim().split(/\s+/).filter(Boolean).length >= 2
+      ].filter(Boolean).length;
+
+      if (score === 5) {
+        errEl.classList.remove('show');
+        okEl.textContent = `✅ Nama "${val.trim()}" valid dan diterima!`;
+        okEl.classList.add('show');
+      } else {
+        okEl.classList.remove('show');
+        errEl.textContent = '❌ Nama belum memenuhi semua aturan. Periksa kembali.';
+        errEl.classList.add('show');
+      }
+    }
+
+    function resetForm() {
+      document.getElementById('inputNama').value = '';
+      document.getElementById('errNama').classList.remove('show');
+      document.getElementById('okNama').classList.remove('show');
+      ['rule1','rule2','rule3','rule4','rule5'].forEach(id => setRule(id, false));
+      document.getElementById('strengthFill').style.width = '0%';
+      document.getElementById('strengthLabel').textContent = 'Masukkan nama untuk melihat skor validasi';
+      document.getElementById('strengthLabel').style.color = 'var(--gray-300)';
+    }
+  </script>
+</body>
+</html>

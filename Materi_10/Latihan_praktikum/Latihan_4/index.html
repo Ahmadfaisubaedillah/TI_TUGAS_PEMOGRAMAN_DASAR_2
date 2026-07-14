@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive – Media Query</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="breakpoint-badge">
+    <span class="bp bp-mobile">Mobile (&lt;600px)</span>
+    <span class="bp bp-tablet">Tablet (600–1024px)</span>
+    <span class="bp bp-desktop">Desktop (&gt;1024px)</span>
+  </div>
+
+  <div class="container">
+
+    <aside class="sidebar">
+      <h2>Navigasi</h2>
+      <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Artikel</a></li>
+        <li><a href="#">Galeri</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </aside>
+
+    <main class="konten">
+      <h1>Responsive Web Design</h1>
+      <p>
+        Media Query memungkinkan kita menerapkan CSS yang berbeda
+        berdasarkan ukuran layar perangkat. Coba resize browser ini!
+      </p>
+
+      <div class="kartu-grid">
+        <div class="kartu">
+          <div class="kartu-ikon"></div>
+          <h3>Mobile First</h3>
+          <p>Desain dimulai dari layar paling kecil, kemudian diperluas.</p>
+        </div>
+        <div class="kartu">
+          <div class="kartu-ikon"></div>
+          <h3>Fluid Layout</h3>
+          <p>Gunakan % dan rem agar elemen menyesuaikan container.</p>
+        </div>
+        <div class="kartu">
+          <div class="kartu-ikon"></div>
+          <h3>Flexible Images</h3>
+          <p>Gambar dengan max-width: 100% tidak meluap dari container.</p>
+        </div>
+        <div class="kartu">
+          <div class="kartu-ikon"></div>
+          <h3>Breakpoints</h3>
+          <p>Titik di mana layout berubah: 600px, 768px, 1024px, 1280px.</p>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+</body>
+</html>

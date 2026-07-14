@@ -1,0 +1,311 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fresh Ice Drink</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+
+
+header{
+    background:#00bcd4;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+
+
+nav{
+    background:#0097a7;
+    padding:15px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:yellow;
+}
+
+
+
+.hero{
+    background:url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=1200');
+    background-size:cover;
+    background-position:center;
+    height:400px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero-text{
+    background:rgba(0,0,0,0.5);
+    padding:30px;
+    border-radius:10px;
+    color:white;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.hero p{
+    margin-top:10px;
+    font-size:20px;
+}
+
+
+
+section{
+    padding:60px 20px;
+}
+
+
+
+.produk-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+article{
+    background:white;
+    width:300px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+article:hover{
+    transform:translateY(-10px);
+}
+
+article img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+article h3{
+    padding:15px;
+}
+
+article p{
+    padding:0 15px 15px;
+}
+
+button{
+    margin:0 15px 20px;
+    padding:10px 20px;
+    border:none;
+    background:#00bcd4;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+
+
+.galeri{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.galeri img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+
+
+.kontak{
+    text-align:center;
+    line-height:2;
+}
+
+
+
+footer{
+    background:#0097a7;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>Fresh Ice Drink</h1>
+
+    <p>Minuman Segar dan Kekinian</p>
+
+</header>
+
+
+<nav>
+
+    <a href="#">Beranda</a>
+    <a href="#">Menu</a>
+    <a href="#">Galeri</a>
+    <a href="#">Kontak</a>
+
+</nav>
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <h1>Segarnya Bikin Nagih</h1>
+
+        <p>
+            Nikmati berbagai minuman dingin favoritmu
+        </p>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2 align="center">
+        Menu Favorit
+    </h2>
+
+    <br><br>
+
+    <div class="produk-container">
+
+        <article>
+
+            <img src="https://cdn1-production-images-kly.akamaized.net/HaKFbqgnhuLJMTto7ctdoJ7W6SM=/1x265:1000x828/1200x675/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/4191450/original/002592100_1665721247-shutterstock_495817093.jpg">
+
+            <h3>Es Coklat</h3>
+
+            <p>
+                Minuman coklat dingin dengan rasa creamy.
+            </p>
+
+            <button onclick="alert('Es Coklat dipilih')">
+                Pesan
+            </button>
+
+        </article>
+
+        <article>
+
+            <img src="https://th.bing.com/th/id/OIP.QSplrR6WCTQ8pG5TBeO2JQHaEK?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3">
+
+            <h3>Es Strawberry</h3>
+
+            <p>
+                Minuman buah segar dengan topping buah asli.
+            </p>
+
+            <button onclick="alert('Es Strawberry dipilih')">
+                Pesan
+            </button>
+
+        </article>
+
+        <article>
+
+            <img src="https://i.pinimg.com/originals/81/da/08/81da085a86ab40b5c6e1654c8df841ee.jpg">
+
+            <h3>Es Matcha</h3>
+
+            <p>
+                Matcha dingin premium dengan susu creamy.
+            </p>
+
+            <button onclick="alert('Es Matcha dipilih')">
+                Pesan
+            </button>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section>
+
+    <h2 align="center">
+        Galeri Minuman
+    </h2>
+
+    <br><br>
+
+    <div class="galeri">
+
+        <img src="https://img.mmc.com.do/cdn-bucket/uploads/2025/03/El-matcha-se-volvio-popular-gracias-a-las-redes-sociales.jpg">
+
+        <img src="https://img-global.cpcdn.com/recipes/837566f388f1268e/1200x630cq70/photo.jpg">
+
+        <img src="https://media.istockphoto.com/id/1427445303/id/foto/toko-minuman-es-cokelat-pinggir-jalan-dengan-peralatan-blender-dan-mesin-pembungkus-cangkir.jpg?s=170667a&w=0&k=20&c=jR9Rqje26OSECnsuj4oxIb8EIdPxXhjkxp2ppMXy-Ps=">
+
+        <img src="https://m-cdn.phonearena.com/images/reviews/270780-image/S25-20250717-185719.webp">
+
+    </div>
+
+</section>
+
+
+<section class="kontak">
+
+    <h2>Kontak</h2>
+
+    <br>
+
+    <p>📍 Tangerang, Indonesia</p>
+
+    <p>📞 0857-1663-1157</p>
+
+    <p>📧 freshice@gmail.com</p>
+
+</section>
+
+
+<footer>
+
+    <p>
+        © 2026 Fresh Ice Drink
+    </p>
+
+</footer>
+
+</body>
+</html>
+```

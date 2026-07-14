@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dapur Nusantara – Kue & Katering Tradisional Terbaik" />
+  <title>Dapur Nusantara – Kue & Katering</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar" role="navigation" aria-label="Navigasi utama">
+      <a href="#" class="nav-logo" aria-label="Dapur Nusantara – Beranda">
+        <span class="logo-mark">🍰</span>
+        <span class="logo-text">Dapur <strong>Nusantara</strong></span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+      <label for="nav-toggle" class="hamburger" aria-label="Buka menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <ul class="nav-menu" role="list">
+        <li><a href="#tentang"   class="nav-link">Tentang</a></li>
+        <li><a href="#produk"    class="nav-link">Produk</a></li>
+        <li><a href="#layanan"   class="nav-link">Layanan</a></li>
+        <li><a href="#ulasan"    class="nav-link">Ulasan</a></li>
+        <li><a href="#kontak"    class="nav-link nav-link--cta">Pesan Sekarang</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="beranda" aria-label="Pengenalan">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Kue &amp; Katering Tradisional</span>
+      <h1 class="hero-heading">
+        Rasa Rumahan,<br />Kualitas <em>Profesional</em>
+      </h1>
+      <p class="hero-sub">
+        Kami menyajikan kue tradisional Nusantara dengan bahan pilihan, tanpa
+        pengawet buatan — cocok untuk hajatan, katering kantor, hingga hamper lebaran.
+      </p>
+      <div class="hero-actions">
+        <a href="#produk" class="btn btn-primary">Lihat Menu</a>
+        <a href="#kontak" class="btn btn-ghost">WhatsApp Kami</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Pelanggan</span></div>
+        <div class="stat"><span class="stat-num">8 Thn</span><span class="stat-label">Pengalaman</span></div>
+        <div class="stat"><span class="stat-num">4.9 ★</span><span class="stat-label">Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80" alt="Aneka Kue Tradisional" />
+      </div>
+      <div class="hero-blob"></div>
+    </div>
+  </section>
+
+  <section class="tentang" id="tentang">
+    <div class="tentang-inner">
+      <div class="tentang-foto">
+        <img src="https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=500&q=80" alt="Ibu Sari, pendiri Dapur Nusantara" />
+      </div>
+      <div class="tentang-teks">
+        <span class="section-label">Cerita Kami</span>
+        <h2>Dari Dapur Keluarga ke Ribuan Meja</h2>
+        <p>
+          Dapur Nusantara lahir dari tangan Ibu Sari Dewi pada 2016 — bermula dari
+          pesanan kecil tetangga yang ketagihan klepon dan lapis legit buatannya.
+          Kini kami melayani katering kantor, resepsi pernikahan, dan pengiriman ke
+          seluruh kota.
+        </p>
+        <p>
+          Setiap produk kami dibuat dari bahan lokal segar, bebas pengawet, dan
+          dikemas higienis. Kami bangga menjadi bagian dari momen spesial Anda.
+        </p>
+        <a href="#kontak" class="btn btn-primary">Hubungi Kami</a>
+      </div>
+    </div>
+  </section>
+  <section class="produk" id="produk">
+    <div class="section-header">
+      <span class="section-label">Menu Favorit</span>
+      <h2>Produk Unggulan Kami</h2>
+      <p>Dibuat segar setiap hari, siap diantar ke lokasi Anda.</p>
+    </div>
+
+    <div class="produk-grid">
+
+      <article class="produk-card produk-card--featured">
+        <div class="produk-img">
+          <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&q=80" alt="Lapis Legit" />
+          <span class="badge-populer">Terlaris</span>
+        </div>
+        <div class="produk-info">
+          <h3>Lapis Legit Premium</h3>
+          <p>Kue lapis legit klasik dengan 18 lapisan sempurna, kaya mentega dan rempah pilihan.</p>
+          <div class="produk-footer">
+            <span class="harga">Rp 185.000</span>
+            <a href="#kontak" class="btn-pesan">Pesan</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="produk-card">
+        <div class="produk-img">
+          <img src="https://images.unsplash.com/photo-1571167366136-b57e37cde135?w=400&q=80" alt="Klepon" />
+        </div>
+        <div class="produk-info">
+          <h3>Klepon Gula Jawa</h3>
+          <p>Bola-bola ketan berisi gula merah cair, berbalur kelapa parut segar.</p>
+          <div class="produk-footer">
+            <span class="harga">Rp 35.000</span>
+            <a href="#kontak" class="btn-pesan">Pesan</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="produk-card">
+        <div class="produk-img">
+          <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80" alt="Bolu Pandan" />
+        </div>
+        <div class="produk-info">
+          <h3>Bolu Pandan Kukus</h3>
+          <p>Lembut, harum pandan asli, tanpa pewarna — cocok untuk semua usia.</p>
+          <div class="produk-footer">
+            <span class="harga">Rp 55.000</span>
+            <a href="#kontak" class="btn-pesan">Pesan</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="produk-card">
+        <div class="produk-img">
+          <img src="https://images.unsplash.com/photo-1562440499-64b9a86a5f76?w=400&q=80" alt="Onde-onde" />
+        </div>
+        <div class="produk-info">
+          <h3>Onde-onde Wijen</h3>
+          <p>Krispy di luar, isi kacang hijau manis di dalam. Nostalgia yang tak pernah basi.</p>
+          <div class="produk-footer">
+            <span class="harga">Rp 30.000</span>
+            <a href="#kontak" class="btn-pesan">Pesan</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="produk-card">
+        <div class="produk-img">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Katering" />
+          <span class="badge-baru">Baru</span>
+        </div>
+        <div class="produk-info">
+          <h3>Paket Katering Hajatan</h3>
+          <p>Nasi kotak dan kudapan lengkap untuk 50–500 pax, pengiriman on-time.</p>
+          <div class="produk-footer">
+            <span class="harga">Mulai Rp 25.000/pax</span>
+            <a href="#kontak" class="btn-pesan">Pesan</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="produk-card">
+        <div class="produk-img">
+          <img src="https://images.unsplash.com/photo-1590080875897-28febedb2832?w=400&q=80" alt="Hamper" />
+        </div>
+        <div class="produk-info">
+          <h3>Hamper Lebaran</h3>
+          <p>Kotak hamper elegan berisi 6 jenis kue kering pilihan, siap kirim.</p>
+          <div class="produk-footer">
+            <span class="harga">Rp 120.000</span>
+            <a href="#kontak" class="btn-pesan">Pesan</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="layanan" id="layanan">
+    <div class="section-header section-header--light">
+      <span class="section-label">Yang Kami Tawarkan</span>
+      <h2>Layanan Kami</h2>
+    </div>
+    <div class="layanan-list">
+      <div class="layanan-item">
+        <div class="layanan-ikon">🎂</div>
+        <h3>Custom Cake</h3>
+        <p>Kue ulang tahun dan pernikahan sesuai tema dan selera Anda.</p>
+      </div>
+      <div class="layanan-item">
+        <div class="layanan-ikon">🍱</div>
+        <h3>Katering Kantor</h3>
+        <p>Paket harian atau mingguan untuk kebutuhan makan siang karyawan.</p>
+      </div>
+      <div class="layanan-item">
+        <div class="layanan-ikon">🎁</div>
+        <h3>Hamper & Souvenir</h3>
+        <p>Hamper kue kering cantik untuk Lebaran, Natal, dan acara korporat.</p>
+      </div>
+      <div class="layanan-item">
+        <div class="layanan-ikon">🚚</div>
+        <h3>Antar ke Lokasi</h3>
+        <p>Pengiriman gratis dalam kota untuk pesanan di atas Rp 200.000.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ulasan" id="ulasan">
+    <div class="section-header">
+      <span class="section-label">Kata Mereka</span>
+      <h2>Ulasan Pelanggan</h2>
+    </div>
+    <div class="ulasan-grid">
+      <blockquote class="ulasan-card">
+        <p>"Lapis legitnya juara! Sudah langganan 3 tahun dan rasanya konsisten. Pengirimannya juga selalu tepat waktu."</p>
+        <footer>
+          <img src="https://ui-avatars.com/api/?name=Rina+Wati&background=f59e0b&color=fff&size=48" alt="Rina W." />
+          <div><strong>Rina Wati</strong><span>Pelanggan Setia</span></div>
+        </footer>
+      </blockquote>
+      <blockquote class="ulasan-card">
+        <p>"Katering hajatan kami dilayani dengan profesional. 300 nasi kotak tepat waktu, rapi, dan enak banget!"</p>
+        <footer>
+          <img src="https://ui-avatars.com/api/?name=Dimas+Prasetyo&background=10b981&color=fff&size=48" alt="Dimas P." />
+          <div><strong>Dimas Prasetyo</strong><span>Acara Pernikahan</span></div>
+        </footer>
+      </blockquote>
+      <blockquote class="ulasan-card">
+        <p>"Hamper lebarannya cantik banget dan kue keringnya tidak kalah dari merek terkenal. Recommended!"</p>
+        <footer>
+          <img src="https://ui-avatars.com/api/?name=Siska+Amalia&background=8b5cf6&color=fff&size=48" alt="Siska A." />
+          <div><strong>Siska Amalia</strong><span>Pembelian Online</span></div>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <footer class="site-footer" id="kontak">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <span class="logo-mark">🍰</span>
+          <span class="logo-text">Dapur <strong>Nusantara</strong></span>
+        </a>
+        <p>Kue &amp; katering tradisional dengan cita rasa rumahan sejak 2016.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Tautan Cepat</h4>
+        <ul>
+          <li><a href="#tentang">Tentang Kami</a></li>
+          <li><a href="#produk">Produk</a></li>
+          <li><a href="#layanan">Layanan</a></li>
+          <li><a href="#ulasan">Ulasan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-kontak">
+        <h4>Hubungi Kami</h4>
+        <ul>
+          <li>📍 Jl. Melati No. 12, Bandung</li>
+          <li>📞 <a href="tel:+6281234567890">0812-3456-7890</a></li>
+          <li>✉️ <a href="mailto:halo@dapurnusantara.id">halo@dapurnusantara.id</a></li>
+          <li>⏰ Senin–Sabtu, 07.00–20.00</li>
+        </ul>
+      </div>
+
+      <div class="footer-sosmed">
+        <h4>Ikuti Kami</h4>
+        <div class="sosmed-icons">
+          <a href="#" aria-label="Instagram" class="sosmed-btn">📸 Instagram</a>
+          <a href="#" aria-label="WhatsApp" class="sosmed-btn">💬 WhatsApp</a>
+          <a href="#" aria-label="TikTok" class="sosmed-btn">🎵 TikTok</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Dapur Nusantara. Dibuat dengan ❤️ untuk Praktikum CSS3.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

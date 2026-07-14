@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Latihan 3 – Kalkulator</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .calc-display {
+      background: var(--blue-900); color: var(--white);
+      border-radius: var(--radius-md); padding: 20px 24px;
+      margin-bottom: 20px; font-family: var(--font-display);
+      min-height: 80px;
+    }
+    .calc-display .expr { font-size: .85rem; color: var(--blue-400); min-height: 22px; }
+    .calc-display .result { font-size: 2rem; font-weight: 700; }
+    .op-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .op-btn {
+      padding: 8px 18px; border-radius: 999px; border: 1.5px solid var(--blue-100);
+      background: var(--blue-50); color: var(--blue-700);
+      font-family: var(--font-display); font-size: .9rem; font-weight: 600;
+      cursor: pointer; transition: background .15s;
+    }
+    .op-btn.active, .op-btn:hover { background: var(--blue-500); color: white; border-color: var(--blue-500); }
+    .history-list { list-style: none; }
+    .history-list li {
+      padding: 8px 0; border-bottom: 1px solid var(--gray-100);
+      font-size: .88rem; color: var(--gray-700);
+    }
+    .history-list li:last-child { border: none; }
+  </style>
+</head>
+<body class="page-wrap">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="brand-icon">⟨/⟩</span>
+        <div>
+          <p class="brand-label">Latihan 3</p>
+          <h1 class="brand-name">Kalkulator</h1>
+        </div>
+      </div>
+      <div class="header-meta">
+        <p class="meta-name">Ahmad Faiz Ubaedillah</p>
+        <p class="meta-nim">NIM: 2024001001</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <a class="back-link" href="../index.html">← Kembali ke Beranda</a>
+    <div class="card">
+      <p class="card-title">🔢 Kalkulator Sederhana</p>
+      <p class="card-desc">Masukkan dua angka, pilih operasi, lalu klik Hitung.</p>
+
+      <div class="calc-display">
+        <div class="expr" id="calcExpr">Siap menghitung…</div>
+        <div class="result" id="calcResult">0</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Angka Pertama</label>
+        <input class="form-input" id="num1" type="number" placeholder="Masukkan angka" value="0"/>
+      </div>
+
+      <p class="form-label" style="margin-bottom:8px;">Operasi</p>
+      <div class="op-row">
+        <button class="op-btn active" id="op-plus"  onclick="pilihOp('+')">➕ Tambah</button>
+        <button class="op-btn"        id="op-minus" onclick="pilihOp('-')">➖ Kurang</button>
+        <button class="op-btn"        id="op-times" onclick="pilihOp('×')">✖️ Kali</button>
+        <button class="op-btn"        id="op-div"   onclick="pilihOp('÷')">➗ Bagi</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Angka Kedua</label>
+        <input class="form-input" id="num2" type="number" placeholder="Masukkan angka" value="0"/>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="hitung()">= Hitung</button>
+        <button class="btn btn-secondary" onclick="resetKalc()">🔄 Reset</button>
+      </div>
+
+      <div style="margin-top:28px;">
+        <p style="font-size:.8rem;font-weight:600;color:var(--gray-500);margin-bottom:8px;">📋 Riwayat Perhitungan</p>
+        <ul class="history-list" id="historyList">
+          <li style="color:var(--gray-300)">Belum ada perhitungan</li>
+        </ul>
+      </div>
+
+      <div class="result-box show" style="margin-top:16px">
+        <h4>📝 Konsep yang Digunakan</h4>
+        <p>• <strong>parseFloat()</strong> – konversi string ke angka</p>
+        <p>• <strong>if / else if</strong> – percabangan untuk memilih operasi</p>
+        <p>• <strong>Operator aritmatika</strong> – +, −, ×, ÷</p>
+        <p>• <strong>Array &amp; push()</strong> – menyimpan riwayat</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Ahmad Faiz Ubaedillah</p>
+    <p>NIM: 2024001001 &nbsp;|&nbsp; Latihan 3 – Praktikum JavaScript</p>
+  </footer>
+
+  <script>
+    let operasi = '+';
+    let history = [];
+
+    function pilihOp(op) {
+      operasi = op;
+      ['plus','minus','times','div'].forEach(id => {
+        document.getElementById('op-' + id).classList.remove('active');
+      });
+      const map = {'+':'plus','-':'minus','×':'times','÷':'div'};
+      document.getElementById('op-' + map[op]).classList.add('active');
+    }
+
+    function hitung() {
+      const a = parseFloat(document.getElementById('num1').value);
+      const b = parseFloat(document.getElementById('num2').value);
+
+      if (isNaN(a) || isNaN(b)) { alert('Masukkan angka yang valid!'); return; }
+
+      let hasil;
+      if      (operasi === '+') hasil = a + b;
+      else if (operasi === '-') hasil = a - b;
+      else if (operasi === '×') hasil = a * b;
+      else if (operasi === '÷') {
+        if (b === 0) { alert('Tidak bisa membagi dengan nol!'); return; }
+        hasil = a / b;
+      }
+
+      const expr = `${a} ${operasi} ${b} =`;
+      document.getElementById('calcExpr').textContent   = expr;
+      document.getElementById('calcResult').textContent = hasil % 1 === 0 ? hasil : hasil.toFixed(4);
+
+      history.unshift(`${expr} ${hasil % 1 === 0 ? hasil : hasil.toFixed(4)}`);
+      renderHistory();
+    }
+
+    function renderHistory() {
+      const ul = document.getElementById('historyList');
+      ul.innerHTML = '';
+      if (history.length === 0) {
+        ul.innerHTML = '<li style="color:var(--gray-300)">Belum ada perhitungan</li>';
+        return;
+      }
+      history.slice(0, 8).forEach(h => {
+        const li = document.createElement('li');
+        li.textContent = h;
+        ul.appendChild(li);
+      });
+    }
+
+    function resetKalc() {
+      document.getElementById('num1').value = 0;
+      document.getElementById('num2').value = 0;
+      document.getElementById('calcExpr').textContent   = 'Siap menghitung…';
+      document.getElementById('calcResult').textContent = '0';
+      history = [];
+      renderHistory();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+/* =============================================
+   LATIHAN 1 – Halaman Profil Diri
+   ============================================= */
+
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #4964c5 0%, #38383a 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Kartu Profil */
+.kartu-profil {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 32px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* Foto */
+.foto-wrapper {
+  margin-bottom: 20px;
+}
+
+.foto {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #4f46e5;
+  object-fit: cover;
+}
+
+/* Teks identitas */
+.nama {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e1b4b;
+  margin-bottom: 6px;
+}
+
+.jabatan {
+  font-size: 1rem;
+  color: #4f46e5;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.nim {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-bottom: 20px;
+}
+
+/* Bio */
+.bio {
+  background: #f5f3ff;
+  border-left: 4px solid #4f46e5;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.bio p {
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.6;
+}
+
+/* Keahlian */
+.keahlian h2 {
+  font-size: 1rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.badge {
+  background: #ede9fe;
+  color: #4f46e5;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.kontak {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background: #4f46e5;
+  color: #ffffff;
+}
+
+.btn:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #4f46e5;
+  color: #4f46e5;
+}
+
+.btn-outline:hover {
+  background: #4f46e5;
+  color: #ffffff;
+}

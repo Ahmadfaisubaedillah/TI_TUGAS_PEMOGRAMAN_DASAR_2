@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Latihan 1 – Ubah Warna Teks</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .color-demo {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 700;
+      text-align: center; padding: 32px;
+      border-radius: var(--radius-md);
+      background: var(--gray-100);
+      margin-bottom: 24px;
+      transition: color .3s ease;
+      color: var(--gray-900);
+    }
+    .color-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .color-btn {
+      padding: 10px 20px; border: none; border-radius: 999px;
+      font-family: var(--font-display); font-size: .85rem; font-weight: 600;
+      cursor: pointer; color: white; transition: transform .15s, opacity .2s;
+    }
+    .color-btn:hover { opacity: .85; transform: scale(1.05); }
+    .color-btn:active { transform: scale(.97); }
+  </style>
+</head>
+<body class="page-wrap">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="brand-icon">⟨/⟩</span>
+        <div>
+          <p class="brand-label">Latihan 1</p>
+          <h1 class="brand-name">Ubah Warna Teks</h1>
+        </div>
+      </div>
+      <div class="header-meta">
+        <p class="meta-name">Ahmad Faiz Ubaedillah</p>
+        <p class="meta-nim">NIM: 2024001001</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <a class="back-link" href="../index.html">← Kembali ke Beranda</a>
+
+    <div class="card">
+      <p class="card-title">🎨 Ubah Warna Teks</p>
+      <p class="card-desc">Klik tombol warna di bawah untuk mengubah warna teks secara dinamis menggunakan DOM manipulation.</p>
+
+      <div class="color-demo" id="demoText">
+        Halo! Saya Ahmad Faiz Ubaedillah
+      </div>
+
+      <div class="color-buttons">
+        <button class="color-btn" style="background:#2563eb" onclick="ubahWarna('#2563eb','Biru')">🔵 Biru</button>
+        <button class="color-btn" style="background:#dc2626" onclick="ubahWarna('#dc2626','Merah')">🔴 Merah</button>
+        <button class="color-btn" style="background:#16a34a" onclick="ubahWarna('#16a34a','Hijau')">🟢 Hijau</button>
+        <button class="color-btn" style="background:#d97706" onclick="ubahWarna('#d97706','Oranye')">🟠 Oranye</button>
+        <button class="color-btn" style="background:#7c3aed" onclick="ubahWarna('#7c3aed','Ungu')">🟣 Ungu</button>
+        <button class="color-btn" style="background:#db2777" onclick="ubahWarna('#db2777','Pink')">🌸 Pink</button>
+        <button class="color-btn" style="background:#0f172a" onclick="ubahWarna('#0f172a','Hitam')">⚫ Hitam</button>
+        <button class="color-btn" style="background:#64748b" onclick="ubahWarna(null,'Reset')">🔄 Reset</button>
+      </div>
+
+      <div class="result-box show" style="margin-top:20px">
+        <h4>📝 Konsep yang Digunakan</h4>
+        <p>• <strong>document.getElementById()</strong> – mengambil elemen HTML</p>
+        <p>• <strong>element.style.color</strong> – mengubah properti CSS lewat JavaScript</p>
+        <p>• <strong>Event onclick</strong> – mendeteksi klik tombol</p>
+        <p>• <strong>Parameter fungsi</strong> – meneruskan nilai warna ke fungsi</p>
+      </div>
+
+      <!-- Log aktivitas -->
+      <div style="margin-top:16px">
+        <p style="font-size:.8rem;font-weight:600;color:var(--gray-500);margin-bottom:8px;">📋 Log Aktivitas</p>
+        <ul id="logList" style="list-style:none;font-size:.82rem;color:var(--gray-700);max-height:120px;overflow-y:auto;border:1px solid var(--gray-100);border-radius:8px;padding:10px 14px;"></ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Ahmad Faiz Ubaedillah</p>
+    <p>NIM: 2024001001 &nbsp;|&nbsp; Latihan 1 – Praktikum JavaScript</p>
+  </footer>
+
+  <script>
+    function ubahWarna(warna, namaWarna) {
+      const el = document.getElementById('demoText');
+      el.style.color = warna || 'var(--gray-900)';
+
+      const log = document.getElementById('logList');
+      const item = document.createElement('li');
+      item.textContent = `✔ Warna diubah ke: ${namaWarna} (${warna || 'default'})`;
+      log.prepend(item);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>warung ideal — Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0E0A06; --surface:#1A1208; --card:#221A0E;
+    --gold:#D4A843; --gold2:#F0C860; --cream:#F5EDD8;
+    --muted:#8A7A60; --border:rgba(212,168,67,.2);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);font-family:'Jost',sans-serif;color:var(--cream);}
+
+  .header{text-align:center;padding:60px 20px 40px;background:radial-gradient(ellipse at top,#2A1A08,var(--bg) 70%);border-bottom:1px solid var(--border);}
+  .resto-badge{display:inline-block;border:1px solid var(--border);color:var(--gold);font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;padding:6px 20px;border-radius:30px;margin-bottom:20px;}
+  .resto-name{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:700;line-height:1;margin-bottom:10px;background:linear-gradient(135deg,var(--gold),var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .resto-sub{color:var(--muted);font-size:13px;font-weight:300;letter-spacing:2px;}
+
+  .filter-bar{display:flex;justify-content:center;gap:8px;padding:20px;flex-wrap:wrap;}
+  .fb{background:var(--card);border:1px solid var(--border);color:var(--muted);font-family:'Jost',sans-serif;font-size:13px;font-weight:500;padding:8px 20px;border-radius:30px;cursor:pointer;transition:all .2s;}
+  .fb.active,.fb:hover{background:var(--gold);color:var(--bg);border-color:var(--gold);}
+
+  .menu-section{max-width:1100px;margin:0 auto;padding:20px 30px 100px;}
+  .cat-label{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--gold);margin:40px 0 20px;display:flex;align-items:center;gap:16px;}
+  .cat-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+  .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+  .menu-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s;}
+  .menu-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.5),0 0 0 1px var(--gold);}
+
+ 
+  .menu-img{width:100%;height:190px;object-fit:cover;display:block;}
+
+  .menu-body{padding:18px 20px;}
+  .menu-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;}
+  .menu-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--cream);line-height:1.2;flex:1;}
+  .spicy{font-size:14px;margin-left:8px;}
+  .menu-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+  .menu-foot{display:flex;justify-content:space-between;align-items:center;}
+  .menu-price{font-size:18px;font-weight:600;color:var(--gold);font-family:'Cormorant Garamond',serif;}
+  .tags{display:flex;gap:6px;}
+  .tag{font-size:10px;font-weight:500;letter-spacing:1px;padding:3px 10px;border-radius:20px;}
+  .tag-best{background:rgba(212,168,67,.2);color:var(--gold);border:1px solid var(--border);}
+  .tag-veg{background:rgba(74,122,80,.25);color:#6ABF72;border:1px solid rgba(74,122,80,.4);}
+  .tag-hot{background:rgba(192,64,48,.25);color:#E06050;border:1px solid rgba(192,64,48,.4);}
+  .tag-new{background:rgba(80,120,200,.2);color:#80A0E0;border:1px solid rgba(80,120,200,.4);}
+  .add-btn{background:var(--gold);color:var(--bg);border:none;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;transition:background .2s;flex-shrink:0;}
+  .add-btn:hover{background:var(--gold2);}
+
+  .cart-bar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-family:'Jost',sans-serif;font-weight:600;font-size:14px;padding:14px 32px;border-radius:50px;display:none;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(212,168,67,.4);cursor:pointer;z-index:100;white-space:nowrap;}
+  .cart-bar.visible{display:flex;}
+  .cart-count{background:var(--bg);color:var(--gold);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;}
+
+  footer{text-align:center;padding:30px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;letter-spacing:1px;}
+
+  @media(max-width:600px){
+    .resto-name{font-size:36px;}
+    .menu-section{padding:10px 15px 100px;}
+    .menu-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="resto-badge">✦ selamat datang ✦</div>
+  <div class="resto-name">Warung Ideal</div>
+  <div class="resto-sub">Banyakin makan Kurangin khayalan</div>
+</div>
+
+<div class="filter-bar">
+  <button class="fb active" onclick="filter('all',this)">Semua Menu</button>
+  <button class="fb" onclick="filter('makanan',this)"> Makanan</button>
+  <button class="fb" onclick="filter('lauk',this)"> Lauk</button>
+  <button class="fb" onclick="filter('sayur',this)"> Sayur</button>
+  <button class="fb" onclick="filter('minuman',this)"> Minuman</button>
+  <button class="fb" onclick="filter('dessert',this)"> Dessert</button>
+</div>
+
+<div class="menu-section">
+
+ 
+  <div class="cat-label" data-cat="makanan"> Makanan Utama</div>
+  <div class="menu-grid" data-cat="makanan">
+
+    <div class="menu-card" data-cat="makanan">
+      
+      <img class="menu-img"
+        src="https://cdn.tasteatlas.com/images/dishes/5f4bc0eddd7e433faec6cda7d205848f.jpg?m=facebook"
+        alt="Nasi Padang "
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Nasi+Padang'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Nasi Padang Komplit</div><span class="spicy">🌶️🌶️</span></div>
+        <div class="menu-desc">Nasi putih dengan rendang sapi, gulai ayam, sayur nangka, dan sambal hijau. Cita rasa Minang yang autentik.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 12.000</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="tags"><span class="tag tag-best">⭐ Best Seller</span></div>
+            <button class="add-btn" onclick="addCart('Nasi Padang Komplit',12000)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="makanan">
+     
+      <img class="menu-img"
+        src="https://tse1.mm.bing.net/th/id/OIP.IvY5NB_hN4w-rwnUxtR6TgHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Soto Ayam Lamongan"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Soto+Ayam'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Soto Ayam Lamongan</div></div>
+        <div class="menu-desc">Kuah kuning gurih dengan ayam suwir, telur rebus, bihun, koya, dan sambal. Disajikan hangat.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 15.000</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="tags"><span class="tag tag-best">⭐ Best Seller</span></div>
+            <button class="add-btn" onclick="addCart('Soto Ayam Lamongan',15000)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="makanan">
+    
+      <img class="menu-img"
+        src="https://th.bing.com/th/id/OIP.ClVYslsBXxKx4jlcnDzwdAHaGP?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Nasi Goreng"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Nasi+Goreng'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Nasi Goreng</div><span class="spicy">🌶️</span></div>
+        <div class="menu-desc">Nasi goreng dengan telur ceplok, ayam suwir, acar, kerupuk, dan sambal terasi. Klasik dan lezat.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 12.000</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="tags"><span class="tag tag-new">🆕 New</span></div>
+            <button class="add-btn" onclick="addCart('Nasi Goreng Kampung',12000)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+ 
+  <div class="cat-label" data-cat="lauk">🍗 Lauk Pauk</div>
+  <div class="menu-grid" data-cat="lauk">
+
+    <div class="menu-card" data-cat="lauk">
+ 
+      <img class="menu-img"
+        src="https://tse1.mm.bing.net/th/id/OIP.gY3HTWDDkzX4zxl6VJo6tgHaE7?rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Rendang Sapi"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Rendang+Sapi'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Rendang Sapi</div><span class="spicy">🌶️🌶️🌶️</span></div>
+        <div class="menu-desc">Daging sapi dimasak lama dengan rempah pilihan hingga kering. Legit, gurih, dan kaya rasa.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 10.000</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="tags"><span class="tag tag-best">⭐ Favorit</span></div>
+            <button class="add-btn" onclick="addCart('Rendang Sapi',10000)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="lauk">
+     
+      <img class="menu-img"
+        src="https://tse1.mm.bing.net/th/id/OIP.kdIO6eBZaEH_KWRWR7w10wHaGN?rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Ikan Bakar Bumbu Kecap"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Ikan+Bakar'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Ikan Bakar Bumbu Kecap</div></div>
+        <div class="menu-desc">Ikan nila segar dibakar dengan bumbu kecap manis, bawang, dan cabai rawit. Disajikan dengan lalapan.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 32.000</div>
+          <button class="add-btn" onclick="addCart('Ikan Bakar Bumbu Kecap',32000)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="lauk">
+
+      <img class="menu-img"
+        src="https://wacaberita.com/wp-content/uploads/2022/09/image-181.png"
+        alt="Ayam Goreng Kremes"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Ayam+Goreng'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Ayam Goreng Kremes</div></div>
+        <div class="menu-desc">Potongan ayam kampung digoreng crispy dengan kremesan gurih. Disajikan dengan sambal dan lalapan segar.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 7.000</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="tags"><span class="tag tag-best">⭐ Favorit</span></div>
+            <button class="add-btn" onclick="addCart('Ayam Goreng Kremes',7000)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="cat-label" data-cat="sayur">🥬 Sayur &amp; Pelengkap</div>
+  <div class="menu-grid" data-cat="sayur">
+
+    <div class="menu-card" data-cat="sayur">
+  
+      <img class="menu-img"
+        src="https://tse3.mm.bing.net/th/id/OIP.PwK88sWZQ5PoNuPpkADc3QHaE7?rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Gado-Gado"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Gado-Gado'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Gado-Gado</div></div>
+        <div class="menu-desc">Sayuran rebus, tahu, tempe, telur, lontong dengan bumbu kacang kental dan kerupuk udang.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 12.000</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="tags"><span class="tag tag-veg">🌿 Vegetarian</span></div>
+            <button class="add-btn" onclick="addCart('Gado-Gado Jakarta',12000)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="sayur">
+
+      <img class="menu-img"
+        src="https://resepkoki.id/wp-content/uploads/2017/02/Resep-Sayur-asem-jawa-tengah.jpg"
+        alt="Sayur Asem"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Sayur+Asem'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Sayur Asem</div></div>
+        <div class="menu-desc">Kuah asem segar dengan kacang tanah, jagung, labu siam, kacang panjang, dan melinjo.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 12.000</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="tags"><span class="tag tag-veg">🌿 Vegetarian</span></div>
+            <button class="add-btn" onclick="addCart('Sayur Asem Betawi',12000)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="cat-label" data-cat="minuman">🥤 Minuman</div>
+  <div class="menu-grid" data-cat="minuman">
+
+    <div class="menu-card" data-cat="minuman">
+ 
+      <img class="menu-img"
+        src="https://tse3.mm.bing.net/th/id/OIP.cdKqeh1-YASKv54-iYfkVAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Es Teh Tarik"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Teh+Tarik'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Es Teh Tarik</div></div>
+        <div class="menu-desc">Teh manis yang ditarik hingga berbusa, disajikan dengan es batu. Segar dan nikmat.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 6.000</div>
+          <button class="add-btn" onclick="addCart('Es Teh Tarik',6000)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="minuman">
+    
+      <img class="menu-img"
+        src="https://tse4.mm.bing.net/th/id/OIP.26i_P--k-4h0nftn4rnbsAHaDt?rs=1&pid=ImgDetMain&o=7&rm=3"
+        alt="Es Cincau Hijau"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Es+Cincau'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Es Cincau Hijau</div></div>
+        <div class="menu-desc">Cincau hijau dengan santan, gula merah, dan es serut. Minuman tradisional yang menyegarkan.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 5.000</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="tags"><span class="tag tag-veg">🌿 Vegetarian</span></div>
+            <button class="add-btn" onclick="addCart('Es Cincau Hijau',5000)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="minuman">
+
+      <img class="menu-img"
+        src="https://dcostseafood.id/wp-content/uploads/2022/03/Kopi-Tubruk.jpg"
+        alt="Kopi Tubruk"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Kopi+Tubruk'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Kopi Tubruk</div></div>
+        <div class="menu-desc">Kopi robusta pilihan diseduh dengan air panas tanpa filter. Kuat dan nikmat.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 7.000</div>
+          <button class="add-btn" onclick="addCart('Kopi Tubruk',7000)">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cat-label" data-cat="dessert">Dessert &amp; Jajanan</div>
+  <div class="menu-grid" data-cat="dessert">
+
+    <div class="menu-card" data-cat="dessert">
+
+      <img class="menu-img"
+        src="https://th.bing.com/th/id/R.2bfc734f9a4d34daabbe31ec0ad09729?rik=zb2ozIuDhQcscQ&riu=http%3a%2f%2fgrosirmesin.com%2fwp-content%2fuploads%2f2019%2f09%2fes-shanghai.jpg&ehk=cvV7U5U%2fj1t49DtHrOHLQ%2b3yIUmpfn6DlJk5p6OxuPg%3d&risl=&pid=ImgRaw&r=0"
+        alt="Es Campur"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Es+Campur'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Es Campur</div></div>
+        <div class="menu-desc">Es serut dengan agar-agar, kolang-kaling, cincau, sirup, santan, dan buah nangka.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 12.000</div>
+          <button class="add-btn" onclick="addCart('Es Campur',12000)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="dessert">
+   
+      <img class="menu-img"
+        src="https://www.shutterstock.com/image-photo/klepon-traditional-food-indonesia-260nw-1341006845.jpg"
+        alt="Klepon dan Onde-Onde"
+        onerror="this.src='https://placehold.co/600x400/221A0E/D4A843?text=Klepon'">
+      <div class="menu-body">
+        <div class="menu-top"><div class="menu-name">Klepon</div></div>
+        <div class="menu-desc">Kue tradisional ketan isi gula merah berbalut kelapa parut dan onde-onde wijen. Manis legit.</div>
+        <div class="menu-foot">
+          <div class="menu-price">Rp 5.000</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="tags"><span class="tag tag-veg">🌿 Vegetarian</span></div>
+            <button class="add-btn" onclick="addCart('Klepon & Onde-Onde',5000)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="cart-bar" id="cartBar" onclick="showCart()">
+  <span>🛒 Lihat Pesanan</span>
+  <div class="cart-count" id="cartCount">0</div>
+  <span id="cartTotal">Rp 0</span>
+</div>
+
+<footer>© 2026 warung ideal· Jl. Poros Tengah · ☎ 062 857 1663 1157</footer>
+
+<script>
+let cart=[], total=0;
+function addCart(n,p){
+  cart.push({n,p}); total+=p;
+  document.getElementById('cartCount').textContent=cart.length;
+  document.getElementById('cartTotal').textContent='Rp '+total.toLocaleString('id-ID');
+  document.getElementById('cartBar').classList.add('visible');
+}
+function showCart(){
+  if(!cart.length)return;
+  let msg='🛒 PESANAN ANDA:\n\n';
+  cart.forEach((x,i)=>msg+=`${i+1}. ${x.n} — Rp ${x.p.toLocaleString('id-ID')}\n`);
+  msg+=`\nTotal: Rp ${total.toLocaleString('id-ID')}\n\nKonfirmasi pesanan?`;
+  if(confirm(msg)){
+    alert('✅ Pesanan dikonfirmasi! Terima kasih!');
+    cart=[];total=0;
+    document.getElementById('cartCount').textContent='0';
+    document.getElementById('cartTotal').textContent='Rp 0';
+    document.getElementById('cartBar').classList.remove('visible');
+  }
+}
+function filter(cat,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.cat-label,.menu-grid').forEach(el=>{
+    el.style.display=(cat==='all'||el.dataset.cat===cat)?'':'none';
+  });
+}
+</script>
+</body>
+</html>

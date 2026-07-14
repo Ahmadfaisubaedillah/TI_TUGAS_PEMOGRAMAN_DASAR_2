@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Latihan 2 – Tampilkan Biodata</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .bio-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--blue-500); color: white;
+      font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; flex-shrink: 0;
+    }
+    .bio-result {
+      display: none; margin-top: 24px;
+      padding: 24px; background: var(--blue-50);
+      border: 1.5px solid var(--blue-100); border-radius: var(--radius-md);
+    }
+    .bio-result.show { display: flex; gap: 20px; align-items: flex-start; }
+    .bio-detail p { margin: 4px 0; font-size: .9rem; color: var(--gray-700); }
+    .bio-detail strong { color: var(--gray-900); }
+    .bio-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--blue-700); margin-bottom: 8px; }
+  </style>
+</head>
+<body class="page-wrap">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="brand-icon">⟨/⟩</span>
+        <div>
+          <p class="brand-label">Latihan 2</p>
+          <h1 class="brand-name">Tampilkan Biodata</h1>
+        </div>
+      </div>
+      <div class="header-meta">
+        <p class="meta-name">Ahmad Faiz Ubaedillah</p>
+        <p class="meta-nim">NIM: 2024001001</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <a class="back-link" href="../index.html">← Kembali ke Beranda</a>
+    <div class="card">
+      <p class="card-title">👤 Tampilkan Biodata</p>
+      <p class="card-desc">Isi form di bawah, lalu klik tombol untuk menampilkan biodata Anda di halaman.</p>
+
+      <div class="form-group">
+        <label class="form-label">Nama Lengkap</label>
+        <input class="form-input" id="inNama" type="text" placeholder="Masukkan nama lengkap" value="Ahmad Faiz Ubaedillah"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">NIM</label>
+        <input class="form-input" id="inNim" type="text" placeholder="Masukkan NIM" value="2024001001"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Jurusan</label>
+        <input class="form-input" id="inJurusan" type="text" placeholder="Masukkan jurusan" value="Teknik Informatika"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Semester</label>
+        <input class="form-input" id="inSemester" type="text" placeholder="Contoh: 3" value="3"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Hobi</label>
+        <input class="form-input" id="inHobi" type="text" placeholder="Masukkan hobi Anda" value="Coding &amp; Membaca"/>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="tampilkanBiodata()">👁️ Tampilkan Biodata</button>
+        <button class="btn btn-secondary" onclick="sembunyikanBiodata()">🙈 Sembunyikan</button>
+      </div>
+
+      <div class="bio-result" id="bioResult">
+        <div class="bio-avatar" id="bioAvatar">AF</div>
+        <div class="bio-detail">
+          <p class="bio-name" id="bioNama"></p>
+          <p>🎓 NIM: <strong id="bioNim"></strong></p>
+          <p>📚 Jurusan: <strong id="bioJurusan"></strong></p>
+          <p>📅 Semester: <strong id="bioSemester"></strong></p>
+          <p>🎯 Hobi: <strong id="bioHobi"></strong></p>
+        </div>
+      </div>
+
+      <div class="result-box show" style="margin-top:20px">
+        <h4>📝 Konsep yang Digunakan</h4>
+        <p>• <strong>getElementById &amp; value</strong> – membaca nilai input</p>
+        <p>• <strong>textContent / innerHTML</strong> – menulis ke elemen</p>
+        <p>• <strong>style.display</strong> – show/hide elemen</p>
+        <p>• <strong>classList.toggle()</strong> – menambah class CSS</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Ahmad Faiz Ubaedillah</p>
+    <p>NIM: 2024001001 &nbsp;|&nbsp; Latihan 2 – Praktikum JavaScript</p>
+  </footer>
+
+  <script>
+    function tampilkanBiodata() {
+      const nama     = document.getElementById('inNama').value.trim();
+      const nim      = document.getElementById('inNim').value.trim();
+      const jurusan  = document.getElementById('inJurusan').value.trim();
+      const semester = document.getElementById('inSemester').value.trim();
+      const hobi     = document.getElementById('inHobi').value.trim();
+
+      if (!nama) { alert('Nama tidak boleh kosong!'); return; }
+
+      // Isi data
+      document.getElementById('bioNama').textContent    = nama;
+      document.getElementById('bioNim').textContent     = nim || '-';
+      document.getElementById('bioJurusan').textContent = jurusan || '-';
+      document.getElementById('bioSemester').textContent= semester || '-';
+      document.getElementById('bioHobi').textContent    = hobi || '-';
+
+      // Avatar inisial
+      const inisial = nama.split(' ').slice(0,2).map(w => w[0].toUpperCase()).join('');
+      document.getElementById('bioAvatar').textContent = inisial;
+
+      document.getElementById('bioResult').classList.add('show');
+    }
+
+    function sembunyikanBiodata() {
+      document.getElementById('bioResult').classList.remove('show');
+    }
+  </script>
+</body>
+</html>
